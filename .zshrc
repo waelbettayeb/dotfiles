@@ -37,12 +37,6 @@ export AWS_PROFILE=wael_cli
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-
-    autoload -Uz compinit
-    compinit
-fi
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/wael/.cache/lm-studio/bin"
