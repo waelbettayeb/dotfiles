@@ -12,7 +12,7 @@ config = {
 	hide_tab_bar_if_only_one_tab = true,
 	use_fancy_tab_bar = false,
 	native_macos_fullscreen_mode = true,
-	leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
+	leader = { key = "`", mods = "CTRL", timeout_milliseconds = 1000 },
 	keys = {
 		-- Make Option-Left equivalent to Alt-b which many line editors interpret as backward-word
 		{ key = "LeftArrow", mods = "OPT", action = wezterm.action({ SendString = "\x1bb" }) },
