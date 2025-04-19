@@ -94,7 +94,7 @@ config = {
 			key = "q",
 			mods = "LEADER",
 			action = wezterm.action.PaneSelect({
-				alphabet = "0123456789",
+				alphabet = "1234567890",
 			}),
 		},
 		--tabs
