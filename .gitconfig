@@ -13,10 +13,8 @@
 
 [merge]
     conflictstyle = zdiff3
-[user]
-	name = Wael Bettayeb
-	email = bettayebwael@gmail.com
-	signingkey = 0248B833B5B8695887860F7594B6574F08D2C9E4
+[include]
+    path = ~/.gitconfig.local
 [commit]
 	gpgsign = true
 [http]
