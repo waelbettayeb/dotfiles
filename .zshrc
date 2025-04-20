@@ -54,3 +54,11 @@ DOTFILES_DIR="$HOME/.dotfiles"
 alias dotfiles='/usr/bin/git --git-dir=$DOTFILES_DIR --work-tree=$HOME'
 echo "alias dotfiles='/usr/bin/git --git-dir=$DOTFILES_DIE --work-tree=$HOME'" >> ~/.bashrc
 dotfiles config --local status.showUntrackedFiles no
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
