@@ -2,7 +2,6 @@ local wezterm = require("wezterm")
 
 --- @type wezterm.Config
 config = {
-	term = "screen-256color",
 	colors = {},
 	window_padding = {
 		left = 0,
