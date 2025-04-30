@@ -3,6 +3,7 @@ local wezterm = require("wezterm")
 --- @type wezterm.Config
 config = {
 	colors = {},
+	enable_kitty_graphics = false,
 	window_padding = {
 		left = 0,
 		right = 0,
