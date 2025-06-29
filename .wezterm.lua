@@ -13,7 +13,7 @@ config = {
 	hide_tab_bar_if_only_one_tab = true,
 	use_fancy_tab_bar = false,
 	native_macos_fullscreen_mode = true,
-	leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1500 },
+	leader = { key = "`", mods = "CTRL", timeout_milliseconds = 1500 },
 	keys = {
 		{
 			key = "r",
@@ -118,10 +118,18 @@ config = {
 		{ key = "L", mods = "LEADER|SHIFT", action = wezterm.action({ AdjustPaneSize = { "Right", 5 } }) },
 		--tabs
 		{
+			key = "c",
+			mods = "LEADER",
+			action = wezterm.action.SpawnTab("CurrentPaneDomain"),
+		},
+		{
 			key = "!",
 			mods = "LEADER | SHIFT",
 			action = wezterm.action_callback(function(win, pane)
 				local tab, window = pane:move_to_new_tab()
+				if tab then
+					win:show_tab(tab)
+				end
 			end),
 		},
 		{
