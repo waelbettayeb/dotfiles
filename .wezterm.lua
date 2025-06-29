@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
 
---- @type wezterm.Config
+---@type wezterm.Config
 config = {
 	colors = {},
 	enable_kitty_graphics = false,
@@ -13,7 +13,7 @@ config = {
 	hide_tab_bar_if_only_one_tab = true,
 	use_fancy_tab_bar = false,
 	native_macos_fullscreen_mode = true,
-	leader = { key = "`", mods = "CTRL", timeout_milliseconds = 1500 },
+	leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1500 },
 	keys = {
 		{
 			key = "r",
@@ -54,6 +54,16 @@ config = {
 			key = "z",
 			mods = "LEADER",
 			action = wezterm.action.TogglePaneZoomState,
+		},
+		{
+			key = "\\",
+			mods = "LEADER",
+			action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+		},
+		{
+			key = "-",
+			mods = "LEADER",
+			action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
 		},
 		-- Pane/Navigation
 		{
@@ -127,8 +137,11 @@ config = {
 			mods = "LEADER | SHIFT",
 			action = wezterm.action_callback(function(win, pane)
 				local tab, window = pane:move_to_new_tab()
+				-- activate the current pane
+				-- get index from the current pane
+
 				if tab then
-					win:show_tab(tab)
+					win:activate_tab(tab.tab_index)
 				end
 			end),
 		},
@@ -163,14 +176,25 @@ config = {
 		{ key = "7", mods = "LEADER", action = wezterm.action({ ActivateTab = 6 }) },
 		{ key = "8", mods = "LEADER", action = wezterm.action({ ActivateTab = 7 }) },
 		{ key = "9", mods = "LEADER", action = wezterm.action({ ActivateTab = 8 }) },
+		{
+			key = ".",
+			mods = "LEADER",
+			action = wezterm.action_callback(function(window, pane)
+				window:perform_action(
+					wezterm.action.PromptInputLine({
+						description = "Move tab to position (number):",
+						action = wezterm.action_callback(function(window, pane, line)
+							local pos = tonumber(line)
+							if pos then
+								window:perform_action(wezterm.action.MoveTab(pos - 1), pane)
+							end
+						end),
+					}),
+					pane
+				)
+			end),
+		},
 	},
 }
-for i = 1, 8 do
-	-- CTRL+ALT + number to move to that position
-	table.insert(config.keys, {
-		key = tostring(i),
-		mods = "LEADER",
-		action = wezterm.action.MoveTab(i - 1),
-	})
-end
+
 return config
