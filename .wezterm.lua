@@ -24,6 +24,12 @@ config = {
 		{ key = "LeftArrow", mods = "OPT", action = wezterm.action({ SendString = "\x1bb" }) },
 		-- Make Option-Right equivalent to Alt-f; forward-word
 		{ key = "RightArrow", mods = "OPT", action = wezterm.action({ SendString = "\x1bf" }) },
+		-- copy mode
+		{
+			key = "[",
+			mods = "LEADER",
+			action = wezterm.action.ActivateCopyMode,
+		},
 		-- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
 		{
 			key = "a",
