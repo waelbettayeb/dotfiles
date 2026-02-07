@@ -45,7 +45,6 @@ export PATH="$PATH:/Users/wael/.cache/lm-studio/bin"
 alias g="grep"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-eval "$(gh copilot alias -- zsh)"
 export XDG_CONFIG_HOME="$HOME/.config"
 
 
@@ -56,9 +55,21 @@ echo "alias dotfiles='/usr/bin/git --git-dir=$DOTFILES_DIE --work-tree=$HOME'" >
 dotfiles config --local status.showUntrackedFiles no
 
 # pnpm
+alias pn=pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/wael/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/wael/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/wael/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/wael/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/wael/.antigravity/antigravity/bin:$PATH"
+export GPG_TTY=$(tty)
